@@ -1,0 +1,39 @@
+﻿@using Microsoft.Web.Mvc
+@using Web.Controllers
+@using Web.Extensions
+@model dynamic
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head><title>title</title></head>
+    <script src="@Url.Content("~/scripts/jquery-2.0.3.min.js")"></script>
+    <body>
+        <div>
+            <div class="js-async">
+                <span>This block updates via async action</span>
+                <div class="content"></div>
+            </div>
+        </div>
+    </body>
+    
+    <script type="text/javascript">
+        (function ($) {
+            var requestAsyncBlock = function() {
+                $.get("@(Url.Action<HomeController>(x => x.GetAsyncBlock()))", function(response) {
+                    $('.js-async > .content').html(response.date);
+
+                    requestAsyncBlock();
+                });
+            };
+
+            $(function () {
+                requestAsyncBlock();
+            });
+        })(jQuery)
+    </script>
+</html>
