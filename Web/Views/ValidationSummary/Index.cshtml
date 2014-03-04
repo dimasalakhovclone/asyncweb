@@ -1,0 +1,16 @@
+﻿@using Web.Extensions
+@model Web.Controllers.Book
+
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        @Html.DisplayFor(x => x.Title)
+        @Html.ValidationSummaryFor(x => x.Title)
+        @Html.ValidationMessageFor(x => x.Title)
+        @Html.ValidationSummary("Title")       
+        @Html.DisplayFor(x => x.Author)
+        @Html.ValidationSummaryFor(x => x.Author)
+    </body>
+</html>
